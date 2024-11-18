@@ -9613,6 +9613,11 @@ h6,
   background-size: cover;
 }
 
+.body-bg {
+  background: linear-gradient(rgba(33, 30, 28, 0.7), rgba(33, 40, 28, 0.7)), url(../img/carousel-1.png), no-repeat no-repeat no-repeat no-repeat center center;
+  height: 1000px;
+}
+
 .bg-pricing {
   background: linear-gradient(rgba(33, 30, 28, 0.7), rgba(33, 40, 28, 0.7)), url(../img/carousel-2.png), no-repeat center center;
   background-size: cover;

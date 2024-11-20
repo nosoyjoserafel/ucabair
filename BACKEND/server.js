@@ -1,9 +1,12 @@
 const express = require('express');
+const cors = require('cors'); // Importar el paquete cors
 const app = express();
 const port = process.env.PORT || 3000;
-const db = require('./config/db');
 const dataRoutes = require('./routes/dataRoutes');
 const errorHandler = require('./middlewares/errorHandler');
+
+// Middleware para habilitar CORS
+app.use(cors());
 
 // Middleware para parsear JSON
 app.use(express.json());

@@ -1,0 +1,16 @@
+{
+  "name": "Node.js",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye",
+  "postCreateCommand": "npm install",
+  "forwardPorts": [3000],
+  "appPort": [
+    "3000:3000"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}

@@ -1,23 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Sencillo</title>
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-    <div class="form-container">
-        <h2>Formulario de Registro</h2>
-        <form action="/submit-user" method="POST">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario Sencillo</title>
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
+    <body>
+        <div class="form-container" id="form-container-1">
+            <h2>Formulario de Registro</h2>
+            <h3>Ingrese los datos que se le solicitan</h3>
+            <form action="" method=""> <!-- Buscará si existen ya el correo o el usuario asignado -->
+                <label for="email">E-mail:</label>
+                <input type="email" id="e-mail" name="e-mail" required>
 
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" required>
+                <label for="user">Nombre de usuario:</label>
+                <input type="text" id="user" name="user" required>
 
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
-</body>
+                <button type="submit" class="btn-siguiente" data-next="form-container-2">Siguiente</button>
+            </form>
+        </div>
+        <div class="form-container" id="form-container-2">
+            <h2>Formulario de Registro</h2>
+            <h3>¿Es usted una persona natural o una persona jurídica?</h3>
+            <form>
+                <div class="radio-btns-container">
+                    <label for="persona-natural">Persona Natural</label>
+                    <input type="radio" id="persona-natural" name="tipo-persona" value="natural" required>
+                    <label for="persona-juridica">Persona Jurídica</label>
+                    <input type="radio" id="persona-juridica" name="tipo-persona" value="juridica" required>
+                </div>
+
+                <div class="btns-container">
+                    <button class="btn-atras" data-prev="form-container-1">Atrás</button>
+                    <button class="btn-siguiente" data-next="form-container-natural">Siguiente</button>
+                </div>
+            </form>
+        </div>
+        <div class="form-container" id="form-container-natural">
+            <h2>Formulario de Registro</h2>
+            <h3>Ingrese los datos que se le solicitan</h3>
+            <form action="/submit-user">
+                <label for="nombre">Nombre(s):</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="apellido">Apellido(s):</label>
+                <input type="text" id="apellido" name="apellido" required>
+
+                <label for="f-nac">Fecha de nacimiento:</label>
+                <input type="date" id="f-nac" name="f-nac" required>
+
+                <div class="radio-btns-container">
+                    <fieldset >
+                        <Legend>Sexo</Legend>
+                        <label for="masculino">Masculino</label>
+                        <input type="radio" id="masculino" name="sexo" value="masc" required>
+                        <label for="femenino">Femenino</label>
+                        <input type="radio" id="femenino" name="sexo" value="fem" required>
+                        <label for="n/a">Prefiero no decirlo</label>
+                        <input type="radio" id="n/a" name="sexo" value="fem" required>
+                    </fieldset>
+                </div>
+                
+                <label for="est-civil">Estado civil:</label>
+                <select id="est-civil" name="est-civil" class="input-field" required>
+                    <option value="" disabled selected>Seleccione su estado civil</option>
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                    <option value="divorciado">Divorciado</option>
+                    <option value="viudo">Viudo</option>
+                </select>
+
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+
+                <div class="btns-container">
+                    <button class="btn-atras" data-prev="form-container-2">Atrás</button>
+                    <button class="btn-siguiente">Registrar</button>
+                </div>
+            </form>
+        </div>    
+    </body>
+    <script src="../js/registrar-usuario.js"></script>
 </html>

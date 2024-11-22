@@ -3,9 +3,17 @@
   "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye",
   "postCreateCommand": "npm install",
   "forwardPorts": [3000],
-  "appPort": [
-    "3000:3000"
-  ],
+  // "appPort": [
+  //   "3000:3000"
+  // ],
+  // "portsAttributes": {
+  //   "3000": {
+  //     "label": "Application Port",
+  //     "onAutoForward": "openBrowser",
+  //     "protocol": "http",
+  //     "visibility": "public"
+  //   }
+  // },
   "customizations": {
     "vscode": {
       "extensions": [

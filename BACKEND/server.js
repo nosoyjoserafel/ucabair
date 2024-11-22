@@ -2,8 +2,12 @@ const express = require('express');
 const cors = require('cors'); // Importar el paquete cors
 const app = express();
 const port = process.env.PORT || 3000;
-const dataRoutes = require('./routes/dataRoutes');
+const dataRoutes = require('./routes/tabla_prueba-Routes');
 const errorHandler = require('./middlewares/errorHandler');
+
+// const corsOptions = {
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+// };
 
 // Middleware para habilitar CORS
 app.use(cors());
@@ -12,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-app.use('/data', dataRoutes);
+app.use('/tablaPrueba', dataRoutes);
 
 // Middleware para manejar errores
 app.use(errorHandler);

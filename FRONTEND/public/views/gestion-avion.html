@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Aviones</title>
+    <link rel="stylesheet" href="../css/styles-avion.css">
+</head>
+<body>
+    <h1>Gestión de Aviones</h1>
+
+    <div id="form-container" style="display: none;">
+        <form id="avion-form">
+            <label for="descripcion">Descripción del Avión:</label>
+            <input type="text" id="descripcion" name="descripcion" required>
+            <label for="fecha-fabricacion">Fecha de Fabricación:</label>
+            <input type="date" id="fecha-fabricacion" name="fecha-fabricacion" required>
+            <input type="hidden" id="codigo" name="codigo">
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <!-- Campo de búsqueda y botón de agregar -->
+    <div>
+        <input type="text" id="buscar-codigo" placeholder="Buscar por código" oninput="buscarAvion()">
+        <button onclick="mostrarFormulario()">Agregar Avión</button>
+    </div>
+
+    <!-- Tabla de aviones -->
+    <table id="tabla-aviones">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Fecha de Fabricación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas de la tabla se generarán dinámicamente -->
+        </tbody>
+    </table>
+
+    <script src="../js/registrar-avion.js"></script>
+</body>
+</html>

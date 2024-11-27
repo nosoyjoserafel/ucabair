@@ -1,31 +1,19 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
 }
 
 .form-container {
     display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    margin-bottom: 20px;
 }
 
 .form-container.active {
     display: block;
-    opacity: 1;
-}
-
-.form-container {
-    background-color: white;
-    padding: 50px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: auto;
-    height: 50vh;
 }
 
 form {
@@ -33,73 +21,28 @@ form {
     flex-direction: column;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
 label {
-    margin-bottom: 5px;
-    display: block;
+    margin-top: 10px;
 }
 
-input {
-    width: auto;
+input, select {
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin-top: 5px;
 }
 
-.btn-siguiente {
-    width: auto;
-    padding: 10px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-siguiente:hover {
-    background-color: #4cae4c;
-}
-
-.btn-atras {
-    width: auto;
-    padding: 10px;
-    background-color: #d34d4d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-atras:hover {
-    background-color: #b94242;
-}
-
-.btns-container{
+.radio-btns-container {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.radio-btns-container{
+.btns-container {
+    display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-top: 20px;
 }
 
-.input-field {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#form-container-natural{
-    height: auto;
+button {
+    padding: 10px 20px;
+    cursor: pointer;
 }

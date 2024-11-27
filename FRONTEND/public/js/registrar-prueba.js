@@ -41,7 +41,7 @@ function agregarPrueba(codigo, nombre) {
 function mostrarFormulario(codigo = '', nombre = '') {
     document.getElementById('codigo').value = codigo;
     document.getElementById('nombre').value = nombre;
-    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container-registrar').style.display = 'block';
 }
 
 function buscarPrueba() {
@@ -61,14 +61,28 @@ function modificarPrueba(codigo) {
     // Aquí deberías hacer una solicitud al servidor para obtener los datos de la prueba por código
     
     //Ejemplo
-    const prueba = { codigo: '001', nombre: 'Prueba 1' }; // Ejemplo de datos de prueba
+    const prueba = pruebas.find(prueba => prueba.codigo === codigo); // Buscar la prueba en el array de pruebas
 
     if (prueba && prueba.codigo === codigo) {
-        mostrarFormulario(prueba.codigo, prueba.nombre);
+        document.getElementById('modificar-codigo').value = prueba.codigo;
+        document.getElementById('modificar-nombre').value = prueba.nombre;
+        document.getElementById('form-container-modificar').style.display = 'block';
     } else {
         alert('Prueba no encontrada');
     }
 }
+
+document.getElementById('modificar-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const codigo = document.getElementById('modificar-codigo').value;
+    const nombre = document.getElementById('modificar-nombre').value;
+
+    // Aquí deberías hacer una solicitud al servidor para modificar la prueba
+    pruebas = pruebas.map(prueba => prueba.codigo === codigo ? { codigo, nombre } : prueba);
+    alert(`Prueba con código ${codigo} modificada a nombre ${nombre}`);
+    document.getElementById('form-container-modificar').style.display = 'none';
+    cargarPruebas(pruebas);
+});
 
 function eliminarPrueba(codigo) {
     // Aquí deberías hacer una solicitud al servidor para eliminar la prueba por código

@@ -9,12 +9,23 @@
 <body>
     <h1>Gestión de Pruebas</h1>
 
-    <div id="form-container" style="display: none;">
+    <!-- Formulario para agregar/modificar pruebas -->
+    <div id="form-container-registrar" style="display: none;">
         <form id="prueba-form">
             <label for="nombre">Nombre de la Prueba:</label>
             <input type="text" id="nombre" name="nombre" required>
             <input type="hidden" id="codigo" name="codigo">
             <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <!-- Formulario para modificar pruebas -->
+    <div id="form-container-modificar" style="display: none;">
+        <form id="modificar-form">
+            <label for="modificar-nombre">Modificar Nombre de la Prueba:</label>
+            <input type="text" id="modificar-nombre" name="modificar-nombre" required>
+            <input type="hidden" id="modificar-codigo" name="modificar-codigo">
+            <button type="submit">Modificar</button>
         </form>
     </div>
 

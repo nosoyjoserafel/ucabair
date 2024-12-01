@@ -5,6 +5,12 @@ const { getPruebas, agregarPrueba, modificarPrueba, eliminarPrueba } = require('
 
 router.get('/pruebas', getPruebas);
 
+router.post('/pruebas', agregarPrueba);
+
+router.put('/pruebas/:codigo', modificarPrueba);
+
+router.delete('/pruebas/:codigo', eliminarPrueba);
+
 //router.get('/', getData);
 
 router.post('/submit-user', postData);

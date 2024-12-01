@@ -2,20 +2,19 @@ function generarCodigo() {
     return (Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000).toString();
 }
 
-let pruebas = [ //borrar esto cuando se implemente la bd
-    { codigo: generarCodigo(), nombre: 'Prueba 1' },
-    { codigo: generarCodigo(), nombre: 'Prueba 2' }
-];
-
 document.addEventListener('DOMContentLoaded', () => {
-    cargarPruebas(pruebas);
+    fetch('/pruebas')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(pruebas => cargarPruebas(pruebas))
+        .catch(error => console.error('Error al cargar las pruebas:', error));
 });
 
 function cargarPruebas(pruebas) {
-    // Aquí deberías se hace la solicitud al servidor para obtener las pruebas desde la base de datos
-
-    //Ejemplo de pruebas
-
     const tbody = document.querySelector('#tabla-pruebas tbody');
     tbody.innerHTML = '';
 
@@ -35,7 +34,26 @@ function cargarPruebas(pruebas) {
 
 function agregarPrueba(codigo, nombre) {
     const nuevaPrueba = { codigo: codigo, nombre: nombre };
-    pruebas.push(nuevaPrueba); //esto cambia cuando se conecte la bd
+    fetch('/pruebas', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(nuevaPrueba)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(prueba => {
+        alert(`Prueba con código ${prueba.codigo} y nombre ${prueba.nombre} guardada`);
+        fetch('/pruebas')
+            .then(response => response.json())
+            .then(pruebas => cargarPruebas(pruebas));
+    })
+    .catch(error => console.error('Error al agregar la prueba:', error));
 }
 
 function mostrarFormulario(codigo = '', nombre = '') {
@@ -46,30 +64,35 @@ function mostrarFormulario(codigo = '', nombre = '') {
 
 function buscarPrueba() {
     const codigo = document.getElementById('buscar-codigo').value;
-    if (codigo === '') {
-        cargarPruebas(pruebas);
-        return;
-    }
+    fetch('/pruebas')
+        .then(response => response.json())
+        .then(pruebas => {
+            if (codigo === '') {
+                cargarPruebas(pruebas);
+                return;
+            }
 
-    // Aquí deberías hacer una solicitud al servidor para buscar la prueba por código
-
-    const pruebasFiltradas = pruebas.filter(prueba => prueba.codigo.includes(codigo));
-    cargarPruebas(pruebasFiltradas);
+            const pruebasFiltradas = pruebas.filter(prueba => prueba.codigo.includes(codigo));
+            cargarPruebas(pruebasFiltradas);
+        })
+        .catch(error => console.error('Error al buscar la prueba:', error));
 }
 
 function modificarPrueba(codigo) {
-    // Aquí deberías hacer una solicitud al servidor para obtener los datos de la prueba por código
-    
-    //Ejemplo
-    const prueba = pruebas.find(prueba => prueba.codigo === codigo); // Buscar la prueba en el array de pruebas
+    fetch('/pruebas')
+        .then(response => response.json())
+        .then(pruebas => {
+            const prueba = pruebas.find(prueba => prueba.codigo === codigo);
 
-    if (prueba && prueba.codigo === codigo) {
-        document.getElementById('modificar-codigo').value = prueba.codigo;
-        document.getElementById('modificar-nombre').value = prueba.nombre;
-        document.getElementById('form-container-modificar').style.display = 'block';
-    } else {
-        alert('Prueba no encontrada');
-    }
+            if (prueba && prueba.codigo === codigo) {
+                document.getElementById('modificar-codigo').value = prueba.codigo;
+                document.getElementById('modificar-nombre').value = prueba.nombre;
+                document.getElementById('form-container-modificar').style.display = 'block';
+            } else {
+                alert('Prueba no encontrada');
+            }
+        })
+        .catch(error => console.error('Error al modificar la prueba:', error));
 }
 
 document.getElementById('modificar-form').addEventListener('submit', (event) => {
@@ -77,18 +100,40 @@ document.getElementById('modificar-form').addEventListener('submit', (event) => 
     const codigo = document.getElementById('modificar-codigo').value;
     const nombre = document.getElementById('modificar-nombre').value;
 
-    // Aquí deberías hacer una solicitud al servidor para modificar la prueba
-    pruebas = pruebas.map(prueba => prueba.codigo === codigo ? { codigo, nombre } : prueba);
-    alert(`Prueba con código ${codigo} modificada a nombre ${nombre}`);
-    document.getElementById('form-container-modificar').style.display = 'none';
-    cargarPruebas(pruebas);
+    fetch(`/pruebas/${codigo}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ codigo, nombre })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(prueba => {
+        alert(`Prueba con código ${prueba.codigo} modificada a nombre ${prueba.nombre}`);
+        document.getElementById('form-container-modificar').style.display = 'none';
+        fetch('/pruebas')
+            .then(response => response.json())
+            .then(pruebas => cargarPruebas(pruebas));
+    })
+    .catch(error => console.error('Error al modificar la prueba:', error));
 });
 
 function eliminarPrueba(codigo) {
-    // Aquí deberías hacer una solicitud al servidor para eliminar la prueba por código
-
-    alert(`Prueba con código ${codigo} eliminada`);
-    cargarPruebas();
+    fetch(`/pruebas/${codigo}`, {
+        method: 'DELETE'
+    })
+    .then(() => {
+        alert(`Prueba con código ${codigo} eliminada`);
+        fetch('/pruebas')
+            .then(response => response.json())
+            .then(pruebas => cargarPruebas(pruebas));
+    })
+    .catch(error => console.error('Error al eliminar la prueba:', error));
 }
 
 document.getElementById('prueba-form').addEventListener('submit', (event) => {
@@ -96,9 +141,6 @@ document.getElementById('prueba-form').addEventListener('submit', (event) => {
     const codigo = generarCodigo();
     const nombre = document.getElementById('nombre').value;
 
-    // Aquí deberías hacer una solicitud al servidor para agregar o modificar la prueba
     agregarPrueba(codigo, nombre);
-    alert(`Prueba con código ${codigo} y nombre ${nombre} guardada`);
-    document.getElementById('form-container').style.display = 'none';
-    cargarPruebas(pruebas);
+    document.getElementById('form-container-registrar').style.display = 'none';
 });

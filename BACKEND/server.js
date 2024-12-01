@@ -23,9 +23,9 @@ app.use('/', dataRoutes);
 // Middleware para manejar errores
 app.use(errorHandler);
 
-// Ruta para servir el formulario
+// Ruta para servir el formulario, mientras depuramos estoy trabajando con pruebas
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../FRONTEND/public/views', 'registrar-usuario.html'));
+  res.sendFile(path.join(__dirname, '../FRONTEND/public/views', 'gestion-prueba.html'));
 });
 
 app.listen(port, () => {

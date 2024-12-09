@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const filePath = path.join(__dirname, '../aviones.json');
+const filePath = path.join(__dirname, '../data/aviones.json');
 
 const getAviones = (req, res) => {
     try {

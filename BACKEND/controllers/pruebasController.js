@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const filePath = path.join(__dirname, '../pruebas.json');
+const filePath = path.join(__dirname, '../data/pruebas.json');
 
 const getPruebas = (req, res) => {
     try {

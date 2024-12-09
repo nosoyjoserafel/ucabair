@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const filePath = path.join(__dirname, '../usuarios.json');
+const filePath = path.join(__dirname, '../data/usuarios.json');
 
 const getData = async (req, res, next) => {
   try {

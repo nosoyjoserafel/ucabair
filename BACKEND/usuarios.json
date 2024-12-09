@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "email": "admin@example.com",
+    "password": "hashed_password",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "username": "user",
+    "email": "user@example.com",
+    "password": "hashed_password",
+    "role": "user"
+  },
+  {
+    "id": 3,
+    "username": "mati_st",
+    "email": "ppp@gmail.com",
+    "password": "$2a$08$qNQmNIk7/dQ7g/NXaf9xy.XPAkP/NHfvSN5tBt3FMbaYf3NIRWBzW",
+    "role": "admin"
+  },
+  {
+    "id": 4,
+    "username": "mati_st1",
+    "email": "pedrop@gmail.com",
+    "password": "$2a$08$OkG5LRqg./hm.1xyv6PXPuz7v1S7uSw//auIJz3oknBYegOcltjpW",
+    "role": "user"
+  },
+  {
+    "id": 5,
+    "username": "matiasito",
+    "email": "pppppp@gmail.com",
+    "password": "$2a$08$N0nj32Avh6tj.eO.i.Yi2uGf6z4mXB6FQFv45uj2t3Wh1wesZDzXm",
+    "role": "user"
+  }
+]

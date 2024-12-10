@@ -25,7 +25,7 @@ app.use(errorHandler);
 
 // Ruta para servir el formulario, mientras depuramos estoy trabajando con pruebas
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../FRONTEND/public/views', 'singup.html'));
+  res.sendFile(path.join(__dirname, '../FRONTEND/public/views', 'login.html'));
 });
 
 app.listen(port, () => {

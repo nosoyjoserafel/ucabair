@@ -4,7 +4,7 @@ const path = require('path');
 const { getData, postData } = require('../controllers/userController');
 const { getPruebas, agregarPrueba, modificarPrueba, eliminarPrueba } = require('../controllers/pruebasController');
 const { getAviones, addAvion, updateAvion, deleteAvion } = require('../controllers/avionesController');
-const { getUsuarios, addUsuario } = require('../controllers/userController');
+const { getUsuarios, addUsuario, loginUsuario } = require('../controllers/userController');
 
 //rutas de pruebas
 
@@ -17,6 +17,10 @@ router.put('/pruebas/:codigo', modificarPrueba);
 router.delete('/pruebas/:codigo', eliminarPrueba);
 
 //rutas de aviones
+
+router.get('/aviones-page', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../FRONTEND/public/views', 'gestion-avion.html'));
+});
 
 router.get('/aviones', getAviones);
 
@@ -32,20 +36,13 @@ router.post('/submit-user', postData);
 
 //ruta para iniciar sesión y para registrarse
 
-router.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    if (username === 'admin' && password === 'admin') {
-        res.json({ message: 'success' });
-    } else {
-        res.json({ message: 'error' });
-    }
-});
+router.post('/login', loginUsuario);
 
 router.get('/logout', (req, res) => {
     res.json({ message: 'success' });
 });
 
-router.get('/singup', (req, res) => {
+router.get('/singup-page', (req, res) => {
     res.sendFile(path.join(__dirname, '../../FRONTEND/public/views', 'singup.html'));
 });
 

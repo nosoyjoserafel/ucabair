@@ -2,8 +2,10 @@ const pool = require('../config/db');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const filePath = path.join(__dirname, '../data/usuarios.json');
+const secretKey = '12345';
 
 const getData = async (req, res, next) => {
   try {
@@ -65,4 +67,26 @@ const addUsuario = (req, res) => {
   }
 };
 
-module.exports = { getData, postData, getUsuarios, addUsuario };
+const loginUsuario = (req, res) => {
+  try {
+      const { username, password } = req.body;
+      const usuarios = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const usuario = usuarios.find(u => u.username === username);
+
+      if (!usuario) {
+          return res.status(400).json({ success: false, message: 'Nombre de usuario incorrecto' });
+      }
+
+      const passwordIsValid = bcrypt.compareSync(password, usuario.password);
+      if (!passwordIsValid) {
+          return res.status(400).json({ success: false, message: 'Contraseña incorrecta' });
+      }
+
+      const token = jwt.sign({ id: usuario.id, username: usuario.username, role: usuario.role }, secretKey, { expiresIn: '1h' });
+      return res.status(200).json({ success: true, token, redirectUrl: '/aviones-page' });
+  } catch (error) {
+      res.status(500).json({ error: 'Error al iniciar sesión' });
+  }
+};
+
+module.exports = { getData, postData, getUsuarios, addUsuario, loginUsuario };

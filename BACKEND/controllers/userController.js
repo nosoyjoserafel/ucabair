@@ -60,8 +60,12 @@ const addUsuario = (req, res) => {
           role
       };
       usuarios.push(nuevoUsuario);
+
+      const token = jwt.sign({ id: nuevoUsuario.id, username: nuevoUsuario.username, role: nuevoUsuario.role }, secretKey, { expiresIn: '1h' });
+
       fs.writeFileSync(filePath, JSON.stringify(usuarios, null, 2), 'utf8');
-      res.status(201).json(nuevoUsuario);
+
+      res.status(201).json({success: true, token, redirectUrl: '/aviones-page'});
   } catch (error) {
       res.status(500).json({ error: 'Error al escribir en el archivo de usuarios' });
   }

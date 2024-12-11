@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const role = document.getElementById('role').value;
+        const role = 'cliente';
 
         fetch('/register')
             .then(response => response.json())
@@ -28,9 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(usuario)
         })
         .then(response => response.json())
-        .then(usuario => {
-            alert(`Usuario con nombre ${usuario.username} registrado`);
-            document.getElementById('usuario-form').reset();
+        .then(data => {
+            if (data.success) {
+                localStorage.setItem('token', data.token);
+                const payload = JSON.parse(atob(data.token.split('.')[1]));
+                document.getElementById('usuario-form').reset();
+                alert(`Se ha registrado con éxito\nBienvenido, ${payload.username}`);
+                window.location.href = data.redirectUrl;         
+            } else {
+                alert('Nombre de usuario o contraseña incorrectos');
+            }
         })
         .catch(error => console.error('Error al registrar el usuario:', error));
     }

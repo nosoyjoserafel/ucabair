@@ -3,21 +3,7 @@
     "id": 1,
     "username": "admin",
     "email": "admin@example.com",
-    "password": "hashed_password",
-    "role": "admin"
-  },
-  {
-    "id": 2,
-    "username": "jmsilveira.22",
-    "email": "jmsilveira.22@est.ucab.edu.ve",
     "password": "$2a$08$ytWCaNxSEfTu8I1LmFCojeqr7LSQcXdol9S1Dcj0fehofT4FqRMge",
-    "role": "cliente"
-  },
-  {
-    "id": 3,
-    "username": "pepe",
-    "email": "pepe@gmail.com",
-    "password": "$2a$08$R3bJD3JFbA0VDVpAVMd5a.c7eXW2cASKxFKdgkJ0EXi1VDRKHQhQG",
-    "role": "cliente"
+    "role": "admin"
   }
 ]

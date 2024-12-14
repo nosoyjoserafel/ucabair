@@ -50,4 +50,9 @@ router.get('/register', getUsuarios);
 
 router.post('/register', addUsuario);
 
+//ruta para la página de inicio
+router.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../FRONTEND/public/views', 'home.html'));
+});
+
 module.exports = router;

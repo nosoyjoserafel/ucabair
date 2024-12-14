@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/carousel.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+      
+          <div class="navbar-header">
+            <button class="navbar-toggler" data-toggle="open-navbar1">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+        </div>
+        
+        <div class="navbar-menu" id="open-navbar1">
+              <a href="/">
+                <img src="../img/ucabair-logo.png" alt="logo" id="navbar-logo">
+              </a>
+            <ul class="navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li class="navbar-dropdown">
+                <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-id">
+                  Categories <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown" id="my-dropdown-id">
+                  <li><a href="#">Category 1</a></li>
+                  <li class="separator"></li>
+                  <li><a href="#">Category 2</a></li>
+                  <li class="separator"></li>
+                  <li><a href="#">Category 3</a></li>
+                </ul>
+              </li>
+           
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Signin</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <h1>¿Listo para volar?</h1>
+
+    <h2>Los mejores aviones del mercado a un click de distancia</h2>
+    <div class="carousel">
+        <button id="prevSlide" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="img-carousel">
+            <a href="#">
+                <img src="../img/service-4.jpg" alt="avion1">
+            </a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, quibusdam.</p>
+        </div>
+        <div class="img-carousel">
+            <a href="#">
+                <img src="../img/service-2.jpg" alt="avion2">
+            </a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, quibusdam.</p>
+        </div>
+        <div class="img-carousel">
+            <a href="#">
+                <img src="../img/service-5.jpg" alt="avion3">
+            </a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, quibusdam.</p>
+        </div>
+        <button id="nextSlide" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <script src="../js/carousel.js"></script>
+</body>
+</html>

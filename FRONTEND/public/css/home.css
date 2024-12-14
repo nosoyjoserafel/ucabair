@@ -1,0 +1,7 @@
+h1,h2 {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 10px; /* Elimina el margen por defecto */
+    text-align: center; /* Centra el texto dentro de los elementos */
+}

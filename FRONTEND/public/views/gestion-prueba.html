@@ -5,9 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Pruebas</title>
     <link rel="stylesheet" href="../css/styles-prueba.css">
+    <link rel="stylesheet" href="../css/navbar.css">
 </head>
-<body>
-    <h1>Gestión de Pruebas</h1>
+<body data-roles="admin, empleado">
+    <nav class="navbar">
+        <div class="container">
+      
+          <div class="navbar-header">
+            <button class="navbar-toggler" data-toggle="open-navbar1">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+        </div>
+        
+        <div class="navbar-menu" id="open-navbar1">
+              <a href="/">
+                <img src="../img/ucabair-logo.png" alt="logo" id="navbar-logo">
+              </a>
+            <ul class="navbar-nav">
+              <li class="active"><a href="/home">Home</a></li>
+              <li class="navbar-dropdown">
+                <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-id">
+                  Categories <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown" id="my-dropdown-id">
+                  <li><a href="#">Category 1</a></li>
+                  <li class="separator"></li>
+                  <li><a href="#">Category 2</a></li>
+                  <li class="separator"></li>
+                  <li><a href="#">Category 3</a></li>
+                </ul>
+              </li>
+           
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Signin</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <h1>Pruebas</h1>
 
     <!-- Formulario para agregar/modificar pruebas -->
     <div id="form-container-registrar" style="display: none;">
@@ -49,6 +88,8 @@
         </tbody>
     </table>
 
-    <script src="../js/registrar-prueba.js"></script>
+    <script src="../js/gestion-pruebas.js"></script>
+    <script src="../js/verificarToken.js"></script>
+    
 </body>
 </html>

@@ -28,6 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Nombre de usuario o contraseña incorrectos');
             }
         })
-        .catch(error => console.error('Error al iniciar sesión:', error));
+        .catch(error => alert('Error: ' + error.message));
     });
 });

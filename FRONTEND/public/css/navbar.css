@@ -149,7 +149,7 @@ a {
   padding: 0.5rem 1rem;
 }
 .navbar .navbar-menu .navbar-nav > li > a:hover {
-  color: #66f;
+  color: rgb(236, 150, 255);
 }
 @media (max-width: 768px) {
   .navbar .navbar-menu .navbar-nav > li > a {
@@ -157,7 +157,7 @@ a {
   }
 }
 .navbar .navbar-menu .navbar-nav > li.active a {
-  color: #66f;
+  color: rgb(236, 150, 255);
 }
 .navbar .navbar-menu .navbar-nav .navbar-dropdown .dropdown {
   list-style: none;

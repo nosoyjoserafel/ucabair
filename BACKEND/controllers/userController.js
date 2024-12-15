@@ -78,7 +78,7 @@ const loginUsuario = (req, res) => {
       const usuario = usuarios.find(u => u.username === username);
 
       if (!usuario) {
-          return res.status(400).json({ success: false, message: 'Nombre de usuario incorrecto' });
+          return res.status(400).json({ success: false, message: 'Nombre de usuario incorrecto o no existe' });
       }
 
       const passwordIsValid = bcrypt.compareSync(password, usuario.password);

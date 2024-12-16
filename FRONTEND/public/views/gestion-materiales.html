@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Aviones</title>
+    <link rel="stylesheet" href="../css/styles-materiales.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+</head>
+<body data-roles="admin, empleado">
+    <nav class="navbar">
+        <div class="container">
+      
+          <div class="navbar-header">
+            <button class="navbar-toggler" data-toggle="open-navbar1">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+        </div>
+        
+        <div class="navbar-menu" id="open-navbar1">
+              <a href="/">
+                <img src="../img/ucabair-logo.png" alt="logo" id="navbar-logo">
+              </a>
+            <ul class="navbar-nav">
+              <li class="active"><a href="/home">Home</a></li>
+              <li class="navbar-dropdown">
+                <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-id">
+                  Categories <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown" id="my-dropdown-id">
+                  <li><a href="#">Category 1</a></li>
+                  <li class="separator"></li>
+                  <li><a href="#">Category 2</a></li>
+                  <li class="separator"></li>
+                  <li><a href="#">Category 3</a></li>
+                </ul>
+              </li>
+           
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Signin</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="form-agregar-material">
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="ubicacion">Ubicacion:</label>
+                <select id="ubicacion" name="ubicacion" required>
+                    <option value="1">Caracas</option>
+                    <option value="2">Valencia</option>
+                </select>
+                <label for="stock">Stock:</label>
+                <input type="text" id="stock" name="stock" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <h1>Gestión de Materiales</h1>    
+
+    <button id="btn-agregar-material">Agregar material</button>
+
+    <!-- Tabla de aviones -->
+    <table id="tabla-materiales">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th>Cantidad disponible</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas de la tabla se generarán dinámicamente -->
+        </tbody>
+    </table>
+
+    <script src="../js/gestion-materiales.js"></script>
+</body>
+</html>

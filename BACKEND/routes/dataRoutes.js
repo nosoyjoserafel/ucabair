@@ -5,6 +5,7 @@ const { getData, postData } = require('../controllers/userController');
 const { getPruebas, agregarPrueba, modificarPrueba, eliminarPrueba } = require('../controllers/pruebasController');
 const { getAviones, addAvion, updateAvion, deleteAvion } = require('../controllers/avionesController');
 const { getUsuarios, addUsuario, loginUsuario } = require('../controllers/userController');
+const { getMateriales, addMaterial, updateMaterial, deleteMaterial } = require('../controllers/materialesController');
 
 //rutas de pruebas
 
@@ -29,6 +30,16 @@ router.post('/aviones', addAvion);
 router.put('/aviones/:codigo', updateAvion);
 
 router.delete('/aviones/:codigo', deleteAvion);
+
+//rutas de materiales
+
+router.get('/materiales', getMateriales);
+
+router.post('/materiales', addMaterial);
+
+router.put('/materiales/:codigo', updateMaterial);
+
+router.delete('/materiales/:codigo', deleteMaterial);
 
 //router.get('/', getData);
 

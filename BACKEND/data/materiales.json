@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "codigo": "731963",
+    "nombre": "martillo",
+    "ubicacion": "Caracas",
+    "cantidadDisponible": "11"
+  }
+]

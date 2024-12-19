@@ -16,7 +16,6 @@ const addMaterial = (req, res) => {
     try {
         const materiales = JSON.parse(fs.readFileSync(filePath, 'utf8'));
         const nuevoMaterial = req.body;
-        console.log(nuevoMaterial);
         materiales.push(nuevoMaterial);        
         fs.writeFileSync(filePath, JSON.stringify(materiales, null, 2), 'utf8');
         res.status(201).json(nuevoMaterial);
@@ -30,7 +29,7 @@ const updateMaterial = (req, res) => {
         const materiales = JSON.parse(fs.readFileSync(filePath, 'utf8'));
         const index = materiales.findIndex(material => material.codigo === req.params.codigo);
         if (index !== -1) {
-            materiales[index].cantidadDisponible += req.body.stock;
+            materiales[index].cantidadDisponible = String(parseInt(materiales[index].cantidadDisponible, 10)+parseInt(req.body.stock, 10));
             fs.writeFileSync(filePath, JSON.stringify(materiales, null, 2), 'utf8');
             res.json(materiales[index]);
         } else {

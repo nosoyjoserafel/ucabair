@@ -22,7 +22,7 @@ function cargarMateriales(materiales) {
             <td>${material.ubicacion}</td>
             <td>${material.cantidadDisponible}</td>
             <td>
-                <button onclick="solicitarStock('${material.codigo}')">Solicitar stock</button>
+                <button onclick="solicitarStock('${material.codigo}')" class="modal-btn">Solicitar stock</button>
                 <button onclick="asignarMaterial('${material.codigo}')">Asignar</button>
             </td>
         `;
@@ -55,7 +55,49 @@ function agregarMaterial(nombre, ubicacion, stock) {
     .catch(error => alert('Error al agregar la material:', error));
 }
 
-document.getElementById('form-agregar-material').addEventListener('submit', (event) => { //no funciona
+function solicitarStock(codigo) {
+    const modal = document.querySelector('#form-solicitar-stock').closest('.modal');
+    const form = document.querySelector('#form-solicitar-stock');
+    
+    form.dataset.codigo = codigo;
+
+    // Desplegar modal
+    modal.style.display = 'flex';
+
+    // Evento para cuando se solicite la cantidad para el stock
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const cantidad = document.querySelector('#cant-solicitud').value;
+
+        fetch(`/materiales/${codigo}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ stock: cantidad })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar el material');
+            }
+            return response.json();
+        })
+        .then(updatedMaterial => {
+            alert(`Stock actualizado para el material con código ${updatedMaterial.codigo}`);
+            modal.style.animation = 'fadeOut 0.3s, slideOut 0.3s';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modal.style.animation = 'fadeIn 0.3s, slideIn 0.3s';
+            }, 300);
+            fetch('/materiales')
+            .then(response => response.json())
+            .then(materiales => cargarMateriales(materiales));
+        })
+        .catch(error => alert('Error al solicitar stock:', error));
+    }, { once: true }); // Ensure the event listener is added only once
+}
+
+document.getElementById('form-agregar-material').addEventListener('submit', (event) => {
     event.preventDefault();
     const nombre = document.getElementById('nombre').value;
     const ubicacion = document.getElementById('ubicacion').value;
@@ -68,29 +110,35 @@ function generarCodigo() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modal');
-    const btn = document.getElementById('btn-agregar-material');
-    const closeBtn = document.querySelector('.modal-content .close');
+    const modals = document.querySelectorAll('.modal');
+    const btns = document.querySelectorAll('.modal-btn');
+    const closeBtns = document.querySelectorAll('.modal-content .close');
 
-    btn.addEventListener('click', function() {
-        modal.style.display = 'flex';
+    btns.forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+            modals[index].style.display = 'flex';
+        });
     });
 
-    closeBtn.addEventListener('click', function() {
-        modal.style.animation = 'fadeOut 0.3s, slideOut 0.3s';
-        setTimeout(() => {
-            modal.style.display = 'none';
-            modal.style.animation = 'fadeIn 0.3s, slideIn 0.3s';
-        }, 300);
+    closeBtns.forEach((closeBtn, index) => {
+        closeBtn.addEventListener('click', function() {
+            modals[index].style.animation = 'fadeOut 0.3s, slideOut 0.3s';
+            setTimeout(() => {
+                modals[index].style.display = 'none';
+                modals[index].style.animation = 'fadeIn 0.3s, slideIn 0.3s';
+            }, 300);
+        });
     });
 
     window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.animation = 'fadeOut 0.3s, slideOut 0.3s';
-            setTimeout(() => {
-                modal.style.display = 'none';
-                modal.style.animation = 'fadeIn 0.3s, slideIn 0.3s';
-            }, 300);
-        }
+        modals.forEach((modal, index) => {
+            if (event.target === modal) {
+                modal.style.animation = 'fadeOut 0.3s, slideOut 0.3s';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    modal.style.animation = 'fadeIn 0.3s, slideIn 0.3s';
+                }, 300);
+            }
+        });
     });
 });
